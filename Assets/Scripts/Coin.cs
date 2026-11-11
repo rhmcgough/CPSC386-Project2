@@ -1,18 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-// Goes on the Coin prefab (collider set to Is Trigger).
 public class Coin : MonoBehaviour
 {
-    [SerializeField] int value = 1;
-    [SerializeField] AudioClip collectClip;
+    public static readonly List<Coin> All = new List<Coin>();
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnEnable() { All.Add(this); }
+    void OnDisable() { All.Remove(this); }
+
+    public void Respawn()
     {
-        if (!other.CompareTag("Player")) return;
-
-        GameSession.Score += value;
-        other.GetComponent<PlayerController>().PlayCollectEffect();
-        if (collectClip != null) AudioSource.PlayClipAtPoint(collectClip, transform.position);
-        Destroy(gameObject);
+        transform.position = new Vector3(Random.Range(-9f, 9f), Random.Range(-4.5f, 4.5f), 0f);
     }
 }
