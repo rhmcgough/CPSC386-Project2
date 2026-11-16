@@ -23,7 +23,6 @@ public static class GameSession
         {
             PlayerPrefs.SetInt(HighScoreKey, Score);
             PlayerPrefs.Save();
-            Debug.Log("New high score saved: " + Score);
         }
     }
 }

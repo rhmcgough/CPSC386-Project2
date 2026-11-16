@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5037534150780061138}
   - component: {fileID: 6389806553778081983}
   - component: {fileID: 4600815796950394923}
-  - component: {fileID: 7466670626392979259}
+  - component: {fileID: 380854049277216981}
   m_Layer: 3
   m_Name: Coin
   m_TagString: Untagged
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &7466670626392979259
+--- !u!114 &380854049277216981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,8 +139,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7642155471296904013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa4bd2eb7c342e199420e50100cc2e, type: 3}
+  m_Script: {fileID: 11500000, guid: e794274dbf12c4f2fa79f7dd68b03b5c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Coin
+  m_EditorClassIdentifier: Assembly-CSharp::Coin2
   value: 1
   collectClip: {fileID: 8300000, guid: 9a1f3e2c3f2db46649b141da2231790b, type: 3}

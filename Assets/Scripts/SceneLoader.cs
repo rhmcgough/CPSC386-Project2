@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] string triggerScene = "MainMenu";
     [SerializeField] bool saveScoreOnTrigger = false;
+    [SerializeField] AudioClip triggerClip;
 
     public void LoadScene(string sceneName)
     {
@@ -18,6 +19,7 @@ public class SceneLoader : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         if (saveScoreOnTrigger) GameSession.SaveHighScore();
+        if (triggerClip != null && AudioManager.Instance != null) { AudioManager.Instance.PlaySfx(triggerClip); }
         SceneManager.LoadScene(triggerScene);
     }
 }

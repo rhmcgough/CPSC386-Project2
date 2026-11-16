@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector3 spawnPosition;
     bool isGrounded;
+    bool isFalling;
 
     void Awake()
     {
@@ -39,7 +40,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        if (animator != null) animator.SetBool("IsRunning", Mathf.Abs(moveInput.x) > 0.1f);
+        
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(moveInput.x));
+            animator.SetBool("IsGrounded", isGrounded);
+            animator.SetFloat("YVelocity", rb.linearVelocity.y);
+        }
         if (transform.position.y < fallLimit) Respawn();
     }
 

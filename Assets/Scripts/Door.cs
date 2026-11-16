@@ -22,7 +22,6 @@ public class Door : MonoBehaviour
         // Add returns false when the ID is already in the set, so a duplicate is ignored.
         if (!activatedSwitches.Add(switchId)) return;
 
-        Debug.Log("Switch " + switchId + " activated (" + activatedSwitches.Count + "/" + totalSwitches + ")");
         if (activatedSwitches.Count == totalSwitches) opening = true;
     }
 

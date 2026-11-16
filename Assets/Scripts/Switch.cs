@@ -5,6 +5,7 @@ public class Switch : MonoBehaviour
 {
     [SerializeField] int switchId;
     [SerializeField] Door door;
+    [SerializeField] AudioClip activateClip;
 
     private bool activated = false;
 
@@ -14,6 +15,7 @@ public class Switch : MonoBehaviour
         activated = true;
 
         GetComponent<SpriteRenderer>().color = Color.green;
-        door.ActivateSwitch(switchId);
+        if (activateClip != null && AudioManager.Instance != null) { AudioManager.Instance.PlaySfx(activateClip); }
+        door.ActivateSwitch(switchId); 
     }
 }
