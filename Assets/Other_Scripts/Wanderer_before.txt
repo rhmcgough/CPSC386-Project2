@@ -1,0 +1,49 @@
+using Unity.Profiling;
+using UnityEngine;
+
+public class Wanderer : MonoBehaviour
+{
+    static readonly ProfilerMarker nearestMarker = new ProfilerMarker("Wanderer.FindNearest");
+
+    public float speed = 2f;
+    public float halfWidth = 11f;
+    public float halfHeight = 5f;
+    public float nearestDistance;
+
+    Vector2 direction;
+    SpriteRenderer sr;
+
+    void Start()
+    {
+        direction = Random.insideUnitCircle.normalized;
+        sr = GetComponent<SpriteRenderer>();
+        sr.material.color = Color.HSVToRGB(Random.value, 0.7f, 1f);
+    }
+
+    void Update()
+    {
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+
+        Vector3 p = transform.position;
+        if (Mathf.Abs(p.x) > halfWidth) direction.x = -direction.x;
+        if (Mathf.Abs(p.y) > halfHeight) direction.y = -direction.y;
+
+        using (nearestMarker.Auto())
+        {
+            nearestDistance = FindNearestDistance();
+        }
+    }
+
+    float FindNearestDistance()
+    {
+        Wanderer[] all = FindObjectsByType<Wanderer>(FindObjectsSortMode.None);
+        float best = float.MaxValue;
+        foreach (Wanderer other in all)
+        {
+            if (other == this) continue;
+            float d = Vector2.Distance(transform.position, other.transform.position);
+            if (d < best) best = d;
+        }
+        return best;
+    }
+}
